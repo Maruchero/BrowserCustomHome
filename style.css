@@ -1,5 +1,5 @@
 body {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
     margin: 0;
@@ -9,6 +9,14 @@ body {
     background-repeat: no-repeat;
 }
 
+.glassmorphism {
+    box-shadow: -5px -5px 5px #fff2, 5px 5px 5px #0002;
+    background: #fff5;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+/* searach bar */
 .search-bar {
     position: absolute;
     top: 20vh;
@@ -18,16 +26,14 @@ body {
     height: 5vh;
     border-radius: 2.5vh;
     padding-left: 2.5vh;
-    background: #fff5;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .search-bar:focus-within {
-    box-shadow: 0 0 10px #fff5;
+    outline: 1px solid white;
+    outline-offset: 3px;
 }
 
 .search-bar input {
@@ -62,26 +68,26 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     transition: background-color .3s;
+    transition: box-shadow .3s;
 }
 
 .search-bar .search-button:hover {
     background-color: #fff3;
+    box-shadow: 0 0 10px #0001;
 }
 
 /* NAV */
 .apps {
     position: absolute;
-    /*bottom: 1.5vh;*/
     top: 38vh;
     left: 50%;
     transform: translateX(-50%);
+}
+.apps nav {
+    position: relative;
     display: flex;
     height: 8vh;
     border-radius: 15px;
-    background: #fff6;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    box-shadow: -5px -5px 5px #fff2, 5px 5px 5px #0002;
     padding: 10px;
 }
 
@@ -114,4 +120,31 @@ body {
     top: 50%;
     transform: translateY(-50%);
     margin-left: 10px;
+}
+
+/* Dropdown */
+.dropdown {
+    max-height: initial;
+    overflow: hidden;
+    position: absolute;
+    top: calc(100% + 2vh);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    transition: max-height ease .2s;
+}
+
+.dropdown .container {
+    padding: 20px 0;
+}
+
+.dropdown .option {
+    display: block;
+    width: 100%;
+    padding: 10px 30px;
+    box-sizing: border-box;
+}
+
+.dropdown .option:hover {
+    background-color: #fff3;
 }

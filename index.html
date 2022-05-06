@@ -9,22 +9,74 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar">
+    <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar glassmorphism">
         <input type="text" placeholder="Search" name="q" autocomplete="off" autofocus="true">
         <button type="submit" class="search-button"></button>
     </form>
 
-    <nav class="apps">
-        <div id="apps-container">
-            <a href="https://web.spaggiari.eu/home/app/default/login.php" class="link" target="_blank"
-                style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></a>
-            <a href="https://campus.marconivr.it/" class="link" target="_blank"
-                style="background-image: url('https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico');"></a>
-            <a href="https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="link" target="_blank"
-                style="background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico');"></a>
+    <div class="apps">
+        <nav class="glassmorphism">
+            <div id="apps-school">
+                <a href="https://web.spaggiari.eu/home/app/default/login.php" class="link" target="_blank"
+                    style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></a>
+                <a href="https://campus.marconivr.it/" class="link" target="_blank"
+                    style="background-image: url('https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico');"></a>
+                <a href="https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="link" target="_blank"
+                    style="background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico');"></a>
+            </div>
+            <div id="apps-programming">
+                <a href="https://stackoverflow.com/" class="link" target="_blank"
+                    style="background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196');"></a>
+                <a href="https://github.com/" class="link" target="_blank"
+                    style="background-image: url('https://github.githubassets.com/favicons/favicon.svg');"></a>
+            </div>
+            <div id="apps-gaming">
+                <a href="https://www.roblox.com/home" class="link" target="_blank"
+                    style="background-image: url('https://images.rbxcdn.com/3b43a5c16ec359053fef735551716fc5.ico');"></a>
+                <a href="https://github.com/" class="link" target="_blank"
+                    style="background-image: url('https://di.phncdn.com/www-static/favicon.ico?cache=2022050405');"></a>
+            </div>
+            <span class="separator"></span>
+            <span class="link" style="background-image: url('img/apps-menu.png');" onclick="toggleAppsDropdown()"></span>
+        </nav>
+
+        <div id="dropdown" class="dropdown glassmorphism">
+            <div class="container glassm">
+                <span class="option" onclick="selectApps('apps-school')">School</span>
+                <span class="option" onclick="selectApps('apps-programming')">Programming</span>
+                <span class="option" onclick="selectApps('apps-gaming')">Gaming</span>
+            </div>
         </div>
-        <span class="separator"></span>
-        <span class="link" style="background-image: url('img/apps-menu.png');"></span>
-    </nav>
+    </div>
+
+    <script>
+        document.getElementById("apps-programming").style.display = "none";
+        document.getElementById("apps-gaming").style.display = "none";
+        // Dropdown
+        let dropdown = document.getElementById("dropdown");
+        let activeId = "apps-school"; // id of actually visible group of icons
+
+        let maxH = dropdown.offsetHeight;
+        dropdown.style.maxHeight = "0px";
+
+        function toggleAppsDropdown() {
+            if (dropdown.style.maxHeight === "0px") {
+                dropdown.style.maxHeight = maxH + "px";
+            } else {
+                dropdown.style.maxHeight = "0px";
+            }
+        }
+
+        function selectApps(id) {
+            // set display none on active id
+            document.getElementById(activeId).style.display = "none";
+            // set display block on id
+            document.getElementById(id).style.display = "block";
+            // set active id to id
+            activeId = id;
+            // close dropdown
+            dropdown.style.maxHeight = "0px";
+        }
+    </script>
 </body>
 </html>
