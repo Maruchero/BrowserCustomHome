@@ -11,9 +11,37 @@ body {
 
 .glassmorphism {
     box-shadow: -5px -5px 5px #fff2, 5px 5px 5px #0002;
-    background: #fff5;
+    background-color: #fff5;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+}
+
+/* widgets */
+.widgets {
+    position: absolute;
+    right: 0;
+}
+
+/* clock */
+.widget {
+    background-color: #fff4;
+    width: 16vw;
+    border-radius: 20px;
+    margin: 30px 20px;
+    padding: 20px;
+}
+
+.clock {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 4.3vw;
+    font-weight: 400;
+    color: #111;
+    padding-bottom: 10px;
+    border-bottom: 2px solid dodgerblue;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: dodgerblue 0 20px 20px -20px;
 }
 
 /* searach bar */
@@ -22,10 +50,10 @@ body {
     top: 20vh;
     left: 50%;
     transform: translateX(-50%);
-    width: 30vw;
-    height: 5vh;
-    border-radius: 2.5vh;
-    padding-left: 2.5vh;
+    width: 35vw;
+    height: 6vh;
+    border-radius: 3vh;
+    padding-left: 3vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,7 +67,7 @@ body {
 .search-bar input {
     background: transparent;
     color: #111;
-    font-size: 1.6vh;
+    font-size: 2vh;
     font-family: Verdana, sans-serif;
     border: 0;
     outline: none;

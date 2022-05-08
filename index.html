@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="widgets">
+        <div class="widget glassmorphism">
+            <div class="clock">
+                <span class="clock-hand" id="hour-hand"></span>
+                <span class="clock-hand" id="second-hand">:</span>
+                <span class="clock-hand" id="minute-hand"></span>
+            </div>
+        </div>
+    </div>
+
     <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar glassmorphism">
         <input type="text" placeholder="Search" name="q" autocomplete="off" autofocus="true">
         <button type="submit" class="search-button"></button>
@@ -16,7 +26,7 @@
 
     <div class="apps">
         <nav class="glassmorphism">
-            <div id="apps-school">
+            <div id="apps-school" class="apps-container">
                 <a href="https://web.spaggiari.eu/home/app/default/login.php" class="link" target="_blank"
                     style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></a>
                 <a href="https://campus.marconivr.it/" class="link" target="_blank"
@@ -24,24 +34,26 @@
                 <a href="https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="link" target="_blank"
                     style="background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico');"></a>
             </div>
-            <div id="apps-programming">
+            <div id="apps-programming" class="apps-container">
                 <a href="https://stackoverflow.com/" class="link" target="_blank"
                     style="background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196');"></a>
                 <a href="https://github.com/" class="link" target="_blank"
                     style="background-image: url('https://github.githubassets.com/favicons/favicon.svg');"></a>
+                <a href="https://fonts.google.com/icons" class="link" target="_blank"
+                    style="background-image: url('https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/favicon.svg');"></a>
             </div>
-            <div id="apps-gaming">
+            <div id="apps-gaming" class="apps-container">
                 <a href="https://www.roblox.com/home" class="link" target="_blank"
                     style="background-image: url('https://images.rbxcdn.com/3b43a5c16ec359053fef735551716fc5.ico');"></a>
-                <a href="https://github.com/" class="link" target="_blank"
-                    style="background-image: url('https://di.phncdn.com/www-static/favicon.ico?cache=2022050405');"></a>
+                <a href="https://aternos.org/server/" class="link" target="_blank"
+                    style="background-image: url('https://aternos.org/favicon.ico');"></a>
             </div>
             <span class="separator"></span>
-            <span class="link" style="background-image: url('img/apps-menu.png');" onclick="toggleAppsDropdown()"></span>
+            <span class="link" style="background-image: url('img/apps_icon.svg');" onclick="toggleAppsDropdown()"></span>
         </nav>
 
         <div id="dropdown" class="dropdown glassmorphism">
-            <div class="container glassm">
+            <div class="container">
                 <span class="option" onclick="selectApps('apps-school')">School</span>
                 <span class="option" onclick="selectApps('apps-programming')">Programming</span>
                 <span class="option" onclick="selectApps('apps-gaming')">Gaming</span>
@@ -50,12 +62,42 @@
     </div>
 
     <script>
-        document.getElementById("apps-programming").style.display = "none";
-        document.getElementById("apps-gaming").style.display = "none";
-        // Dropdown
-        let dropdown = document.getElementById("dropdown");
-        let activeId = "apps-school"; // id of actually visible group of icons
+        // Clock
+        let second = document.getElementById("second-hand");
+        let minute = document.getElementById("minute-hand");
+        let hour = document.getElementById("hour-hand");
 
+        updateTime();
+        setInterval(() => {
+            // seconds blinking using color property
+            second.style.color = second.style.color == "transparent" ? "inherit" : "transparent";
+            updateTime();
+        }, 1000);
+
+        function updateTime() {
+            // get time
+            let time = new Date();
+            // set minute hand
+            // add a zero to the minutes if it is less than 10
+            minute.innerHTML = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+            // set hour hand
+            // add a zero to the hours if it is less than 10
+            hour.innerHTML = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
+        }
+    </script>
+
+    <script>
+        // Dropdown
+        // get all apps-container class elements and set them to invisible
+        let apps = document.getElementsByClassName("apps-container");
+        for (let i = 1; i < apps.length; i++) {
+            apps[i].style.display = "none";
+        }
+        
+        let dropdown = document.getElementById("dropdown");
+        let activeId = apps[0].id; // id of actually visible group of icons
+
+        // get dropdown height and then collapse it
         let maxH = dropdown.offsetHeight;
         dropdown.style.maxHeight = "0px";
 
