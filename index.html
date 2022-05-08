@@ -61,64 +61,7 @@
         </div>
     </div>
 
-    <script>
-        // Clock
-        let second = document.getElementById("second-hand");
-        let minute = document.getElementById("minute-hand");
-        let hour = document.getElementById("hour-hand");
-
-        updateTime();
-        setInterval(() => {
-            // seconds blinking using color property
-            second.style.color = second.style.color == "transparent" ? "inherit" : "transparent";
-            updateTime();
-        }, 1000);
-
-        function updateTime() {
-            // get time
-            let time = new Date();
-            // set minute hand
-            // add a zero to the minutes if it is less than 10
-            minute.innerHTML = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
-            // set hour hand
-            // add a zero to the hours if it is less than 10
-            hour.innerHTML = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
-        }
-    </script>
-
-    <script>
-        // Dropdown
-        // get all apps-container class elements and set them to invisible
-        let apps = document.getElementsByClassName("apps-container");
-        for (let i = 1; i < apps.length; i++) {
-            apps[i].style.display = "none";
-        }
-        
-        let dropdown = document.getElementById("dropdown");
-        let activeId = apps[0].id; // id of actually visible group of icons
-
-        // get dropdown height and then collapse it
-        let maxH = dropdown.offsetHeight;
-        dropdown.style.maxHeight = "0px";
-
-        function toggleAppsDropdown() {
-            if (dropdown.style.maxHeight === "0px") {
-                dropdown.style.maxHeight = maxH + "px";
-            } else {
-                dropdown.style.maxHeight = "0px";
-            }
-        }
-
-        function selectApps(id) {
-            // set display none on active id
-            document.getElementById(activeId).style.display = "none";
-            // set display block on id
-            document.getElementById(id).style.display = "block";
-            // set active id to id
-            activeId = id;
-            // close dropdown
-            dropdown.style.maxHeight = "0px";
-        }
-    </script>
+    <script src="clock.js"></script>
+    <script src="dropdown.js"></script>
 </body>
 </html>
