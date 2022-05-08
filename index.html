@@ -17,6 +17,33 @@
                 <span class="clock-hand" id="minute-hand"></span>
             </div>
         </div>
+
+        <div class="widget glassmorphism">
+            <div class="calendar">
+                <div class="calendar-header">
+                    <button class="arrow-left" onclick="setDay(-1)"></button>
+                    <div>
+                        <div class="calendar-header-month">
+                            <span class="calendar-header-month-name" id="month">May</span>
+                            <span class="calendar-header-month-year" id="year">2022</span>
+                        </div>
+                        <div class="calendar-header-day">
+                            <span class="calendar-header-day-name" id="day-name">Sun</span>
+                            <span class="calendar-header-day-date" id="day-number">08</span>
+                        </div>
+                    </div>
+                    <button class="arrow-right" onclick="setDay(1)"></button>
+                </div>
+                <div class="calendar-body">
+                    <div class="events-header">
+                        Events
+                        <button class="calendar-events-addbutton" onclick="add()"></button>
+                    </div>
+                    <div class="events-body" id="events-container">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar glassmorphism">
@@ -63,5 +90,6 @@
 
     <script src="clock.js"></script>
     <script src="dropdown.js"></script>
+    <script src="calendar.js"></script>
 </body>
 </html>
