@@ -108,3 +108,7 @@ function setDay(days) {
     // display the new date
     displayDate();
 }
+
+function add() {
+    
+}

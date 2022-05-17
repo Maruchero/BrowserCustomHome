@@ -9,6 +9,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="toolbar">
+        <span class="tool" style="background-image: url('img/settings.svg');" onclick="openSettings()"></span>
+        <div class="glassmorphism" id="settings">
+            <div class="groups">
+                <span class="group active" onclick="setSettingsContent(this)">Dock</span>
+                <span class="group" onclick="setSettingsContent(this)">Calendar</span>
+                <span class="group" onclick="setSettingsContent(this)">Search</span>
+                <span class="group" onclick="setSettingsContent(this)">Aspect</span>
+            </div>
+            <div id="settings-content">
+                <div class="setting">
+                    <span class="title">School</span>
+                    <div class="link">
+                        <span class="icon" style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></span>
+                        https://web.spaggiari.eu/home/app/default/login.php
+                    </div>
+                    <div class="link">
+                        <span class="icon" style="background-image: url('https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico');"></span>
+                        https://campus.marconivr.it/
+                    </div>
+                </div>
+                <div class="setting">
+                    <span class="title">Gaming</span>
+                    <div class="link">
+                        <span class="icon" style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></span>
+                        https://web.spaggiari.eu/home/app/default/login.php
+                    </div>
+                </div>
+            </div>
+            <span class="close-button" onclick="closeSettings()">cli</span>
+        </div>
+    </div>
+
     <div class="widgets">
         <div class="widget glassmorphism">
             <div class="clock">
@@ -52,7 +85,8 @@
     </form>
 
     <div class="apps">
-        <nav class="glassmorphism">
+        <nav class="glassmorphism" id="dock">
+            <!--
             <div id="apps-school" class="apps-container">
                 <a href="https://web.spaggiari.eu/home/app/default/login.php" class="link" target="_blank"
                     style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></a>
@@ -75,6 +109,7 @@
                 <a href="https://aternos.org/server/" class="link" target="_blank"
                     style="background-image: url('https://aternos.org/favicon.ico');"></a>
             </div>
+            -->
             <span class="separator"></span>
             <span class="link" style="background-image: url('img/apps_icon.svg');" onclick="toggleAppsDropdown()"></span>
         </nav>
@@ -88,6 +123,7 @@
         </div>
     </div>
 
+    <script src="settings.js"></script>
     <script src="clock.js"></script>
     <script src="dropdown.js"></script>
     <script src="calendar.js"></script>

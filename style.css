@@ -15,6 +15,88 @@ body {
     backdrop-filter: blur(5px);
 }
 
+/* settings */
+.toolbar {
+    width: 100%;
+    height: 3vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.toolbar .tool {
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    margin: 10px;
+}
+
+#settings {
+    z-index: 100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    max-width: 100vw;
+    height: 60%;
+    aspect-ratio: 4/3;
+    border-radius: 30px;
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: 35% auto;
+    background: #fffc;
+    transition: all 0.3s ease;
+}
+
+#settings .groups {
+    border-right: 1px solid #888;
+    margin-right: 10px;
+}
+
+#settings .groups .group {
+    display: block;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+#settings .groups .group.active {
+    background: #0001;
+}
+#settings .groups .group:hover {
+    background: #6661;
+}
+
+#settings-content {
+    grid-column-start: 2;
+}
+
+#settings-content .setting {
+    display: block;
+    padding: 20px 10px;
+    border-radius: 5px;
+    margin: 10px;
+    background: #fffc;
+}
+
+#settings .close-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: #000;
+}
+
+#settings-content .setting .link {
+    padding: 10px;
+    line-height: 1.5em;
+}
+#settings-content .setting .icon {
+    display: block;
+    height: 1.5em;
+    aspect-ratio: 1;
+    float: left;
+    margin-right: 10px;
+    background-size: cover;
+}
+
 /* widgets */
 .widgets {
     position: absolute;
