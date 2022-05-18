@@ -15,21 +15,23 @@ body {
     backdrop-filter: blur(5px);
 }
 
-/* settings */
+/* toolbar */
 .toolbar {
+    position: absolute;
+    box-sizing: border-box;
     width: 100%;
-    height: 3vh;
+    height: calc(3vh + 20px);
     display: flex;
-    justify-content: flex-end;
+    padding: 10px;
 }
 
 .toolbar .tool {
     height: 100%;
     aspect-ratio: 1/1;
     background-size: cover;
-    margin: 10px;
 }
 
+/* settings */
 #settings {
     z-index: 100;
     position: absolute;
@@ -69,12 +71,20 @@ body {
     grid-column-start: 2;
 }
 
+#setting-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
 #settings-content .setting {
     display: block;
     padding: 20px 10px;
     border-radius: 5px;
     margin: 10px;
     background: #fffc;
+    text-overflow: clip;
+    overflow: hidden;
 }
 
 #settings .close-button {
@@ -87,6 +97,8 @@ body {
 #settings-content .setting .link {
     padding: 10px;
     line-height: 1.5em;
+    display: flex;
+    overflow: hidden;
 }
 #settings-content .setting .icon {
     display: block;
@@ -95,6 +107,16 @@ body {
     float: left;
     margin-right: 10px;
     background-size: cover;
+}
+
+#settings .toolbar {
+    position: relative;
+    height: initial;
+    margin: 10px 0;
+}
+
+#settings .toolbar button {
+    margin: 0 3px;
 }
 
 /* widgets */
@@ -133,7 +155,7 @@ body {
     text-align: center;
 }
 
-.calendar button {
+button {
     aspect-ratio: 1;
     height: 2em;
     background-size: 100%;
@@ -146,8 +168,8 @@ body {
     transition: background-color 0.3s;
 }
 
-.calendar button:hover {
-    background-color: #fff4;
+button:hover {
+    background-color: #0002;
 }
 
 .arrow-left {
@@ -157,15 +179,15 @@ body {
     background-image: url("img/arrow_right.svg");
 }
 
-.calendar-events-addbutton {
+.add {
     background-image: url("img/add.svg");
 }
 
-.event-options-edit {
+.edit {
     background-image: url("img/edit.svg");
 }
 
-.event-options-delete {
+.delete {
     background-image: url("img/delete.svg");
 }
 
@@ -280,6 +302,10 @@ body {
     border-radius: 15px;
     padding: 10px;
     overflow: hidden;
+}
+
+.apps .apps-container {
+    height: 100%;
 }
 
 .apps .link {

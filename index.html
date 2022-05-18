@@ -11,35 +11,20 @@
 <body>
     <div class="toolbar">
         <span class="tool" style="background-image: url('img/settings.svg');" onclick="openSettings()"></span>
-        <div class="glassmorphism" id="settings">
-            <div class="groups">
-                <span class="group active" onclick="setSettingsContent(this)">Dock</span>
-                <span class="group" onclick="setSettingsContent(this)">Calendar</span>
-                <span class="group" onclick="setSettingsContent(this)">Search</span>
-                <span class="group" onclick="setSettingsContent(this)">Aspect</span>
-            </div>
-            <div id="settings-content">
-                <div class="setting">
-                    <span class="title">School</span>
-                    <div class="link">
-                        <span class="icon" style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></span>
-                        https://web.spaggiari.eu/home/app/default/login.php
-                    </div>
-                    <div class="link">
-                        <span class="icon" style="background-image: url('https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico');"></span>
-                        https://campus.marconivr.it/
-                    </div>
-                </div>
-                <div class="setting">
-                    <span class="title">Gaming</span>
-                    <div class="link">
-                        <span class="icon" style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></span>
-                        https://web.spaggiari.eu/home/app/default/login.php
-                    </div>
-                </div>
-            </div>
-            <span class="close-button" onclick="closeSettings()">cli</span>
+    </div>
+
+    <div class="glassmorphism" id="settings">
+        <div class="groups">
+            <span class="group" onclick="setSettingsContent(this)">Dock</span>
+            <span class="group" onclick="setSettingsContent(this)">Calendar</span>
+            <span class="group" onclick="setSettingsContent(this)">Search</span>
+            <span class="group" onclick="setSettingsContent(this)">Aspect</span>
         </div>
+        <div class="settings-content">
+            <div id="setting-title"></div>
+            <div id="settings-content"></div>
+        </div>
+        <span class="close-button" onclick="closeSettings()">cli</span>
     </div>
 
     <div class="widgets">
@@ -70,7 +55,7 @@
                 <div class="calendar-body">
                     <div class="events-header">
                         Events
-                        <button class="calendar-events-addbutton" onclick="add()"></button>
+                        <button class="add" onclick="add()"></button>
                     </div>
                     <div class="events-body" id="events-container">
                     </div>
@@ -85,31 +70,33 @@
     </form>
 
     <div class="apps">
-        <nav class="glassmorphism" id="dock">
-            <!--
-            <div id="apps-school" class="apps-container">
-                <a href="https://web.spaggiari.eu/home/app/default/login.php" class="link" target="_blank"
-                    style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></a>
-                <a href="https://campus.marconivr.it/" class="link" target="_blank"
-                    style="background-image: url('https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico');"></a>
-                <a href="https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="link" target="_blank"
-                    style="background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico');"></a>
+        <nav class="glassmorphism">
+            <div id="dock">
+                <!--
+                <div id="apps-school" class="apps-container">
+                    <a href="https://web.spaggiari.eu/home/app/default/login.php" class="link" target="_blank"
+                        style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></a>
+                    <a href="https://campus.marconivr.it/" class="link" target="_blank"
+                        style="background-image: url('https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico');"></a>
+                    <a href="https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="link" target="_blank"
+                        style="background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico');"></a>
+                </div>
+                <div id="apps-programming" class="apps-container">
+                    <a href="https://stackoverflow.com/" class="link" target="_blank"
+                        style="background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196');"></a>
+                    <a href="https://github.com/" class="link" target="_blank"
+                        style="background-image: url('https://github.githubassets.com/favicons/favicon.svg');"></a>
+                    <a href="https://fonts.google.com/icons" class="link" target="_blank"
+                        style="background-image: url('https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/favicon.svg');"></a>
+                </div>
+                <div id="apps-gaming" class="apps-container">
+                    <a href="https://www.roblox.com/home" class="link" target="_blank"
+                        style="background-image: url('https://images.rbxcdn.com/3b43a5c16ec359053fef735551716fc5.ico');"></a>
+                    <a href="https://aternos.org/server/" class="link" target="_blank"
+                        style="background-image: url('https://aternos.org/favicon.ico');"></a>
+                </div>
+                -->
             </div>
-            <div id="apps-programming" class="apps-container">
-                <a href="https://stackoverflow.com/" class="link" target="_blank"
-                    style="background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196');"></a>
-                <a href="https://github.com/" class="link" target="_blank"
-                    style="background-image: url('https://github.githubassets.com/favicons/favicon.svg');"></a>
-                <a href="https://fonts.google.com/icons" class="link" target="_blank"
-                    style="background-image: url('https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/favicon.svg');"></a>
-            </div>
-            <div id="apps-gaming" class="apps-container">
-                <a href="https://www.roblox.com/home" class="link" target="_blank"
-                    style="background-image: url('https://images.rbxcdn.com/3b43a5c16ec359053fef735551716fc5.ico');"></a>
-                <a href="https://aternos.org/server/" class="link" target="_blank"
-                    style="background-image: url('https://aternos.org/favicon.ico');"></a>
-            </div>
-            -->
             <span class="separator"></span>
             <span class="link" style="background-image: url('img/apps_icon.svg');" onclick="toggleAppsDropdown()"></span>
         </nav>

@@ -56,10 +56,10 @@ for (let i = 0; i < events.length; i++) {
     let eventOptions = document.createElement("div");
     eventOptions.setAttribute("class", "event-options");
     let eventOptionsEdit = document.createElement("button");
-    eventOptionsEdit.setAttribute("class", "event-options-edit");
+    eventOptionsEdit.setAttribute("class", "edit");
     eventOptionsEdit.setAttribute("onclick", "editEvent(self");
     let eventOptionsDelete = document.createElement("button");
-    eventOptionsDelete.setAttribute("class", "event-options-delete");
+    eventOptionsDelete.setAttribute("class", "delete");
     eventOptionsDelete.setAttribute("onclick", "deleteEvent(self");
     eventOptions.appendChild(eventOptionsEdit);
     eventOptions.appendChild(eventOptionsDelete);
