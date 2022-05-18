@@ -1,10 +1,9 @@
-console.log(document.cookie);
 let userOptions;
 if (document.cookie == "") {
     userOptions = {
-        "backgroundImage": "img/background.webp",
+        "backgroundImage": "img/background2.webp",
         "dock": {
-            "apps-school": [
+            "School": [
                 {
                     "url": "https://web.spaggiari.eu/home/app/default/login.php",
                     "icon": "https://web.spaggiari.eu/favicon.ico"
@@ -18,18 +17,18 @@ if (document.cookie == "") {
                     "icon": "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
                 }
             ],
-            "apps-programming": [
+            "Programming": [
                 {
-                    "url": "https://web.spaggiari.eu/home/app/default/login.php",
-                    "icon": "https://web.spaggiari.eu/favicon.ico"
+                    "url": "https://stackoverflow.com/",
+                    "icon": "https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196"
                 },
                 {
-                    "url": "https://campus.marconivr.it/",
-                    "icon": "https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico"
+                    "url": "https://github.com/",
+                    "icon": "https://github.githubassets.com/favicons/favicon.svg"
                 },
                 {
-                    "url": "https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin",
-                    "icon": "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
+                    "url": "https://fonts.google.com/icons",
+                    "icon": "https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/favicon.svg"
                 }
             ]
         },
@@ -37,12 +36,13 @@ if (document.cookie == "") {
     }
 } else {
     userOptions = JSON.parse(document.cookie.substring(12, 100000));
-    //console.log(userOptions);
 }
+console.log(userOptions);
 // ****************
 // on load load user options
 // dock
 let dock = document.getElementById("dock");
+let t_dropdown = document.getElementById("dropdown").getElementsByClassName("container")[0];
 Object.keys(userOptions.dock).forEach(folder => { // per ogni folder
     let appsContainer = document.createElement("div");
     appsContainer.setAttribute("class", "apps-container");
@@ -57,6 +57,12 @@ Object.keys(userOptions.dock).forEach(folder => { // per ogni folder
         appsContainer.appendChild(a);
     });
     dock.appendChild(appsContainer);
+    // dropdown
+    let dropdownFolder = document.createElement("span");
+    dropdownFolder.setAttribute("class", "option");
+    dropdownFolder.setAttribute("onclick", "selectApps(this.innerHTML)");
+    dropdownFolder.innerHTML = folder;
+    t_dropdown.appendChild(dropdownFolder);
 });
 console.log("Dock completed");
 // aspect
@@ -66,7 +72,7 @@ document.body.style.backgroundImage = "url(" + userOptions.backgroundImage + ")"
 
 
 
-// TODO implement iframes
+
 
 
 
@@ -113,13 +119,13 @@ function setSettingsContent(group) {
         toolbar.setAttribute("class", "toolbar");
         let add = document.createElement("button");
         add.setAttribute("class", "add");
-        add.setAttribute("onclick", "addFolder()"); // TODO add folder
+        add.setAttribute("onclick", "addDock()");
         let edit = document.createElement("button");
         edit.setAttribute("class", "edit");
-        edit.setAttribute("onclick", "editFolder()"); // TODO edit folder
+        edit.setAttribute("onclick", "editDock()");
         let remove = document.createElement("button");
         remove.setAttribute("class", "delete");
-        remove.setAttribute("onclick", "removeFolder()"); // TODO remove folder
+        remove.setAttribute("onclick", "removeDock()");
         toolbar.appendChild(add);
         toolbar.appendChild(edit);
         toolbar.appendChild(remove);
@@ -131,11 +137,13 @@ function setSettingsContent(group) {
             let title = document.createElement("span");
             title.setAttribute("class", "title");
             title.innerHTML = folder;
+            title.setAttribute("onclick", "select(this.parentElement)");
             appsContainer.appendChild(title);
 
             userOptions.dock[folder].forEach(link => { // per ogni link
                 let c = document.createElement("div");
                 c.setAttribute("class", "link");
+                c.setAttribute("onclick", "select(this)");
                 let span = document.createElement("span");
                 span.setAttribute("class", "icon");
                 span.style.backgroundImage = "url(" + link.icon + ")";
@@ -164,13 +172,84 @@ function setSettingsContent(group) {
         option.appendChild(input);
         container.appendChild(option);
     }
-    // save options
-    document.cookie = "userOptions=" + JSON.stringify(userOptions);
 }
 
+
+
+
+// *********************************************************************
+// DOCK FUNCTIONS ******************************************************
+let bufferSelectedItem = null;
+function select(selectedItem) {
+    //console.log(selectedItem);
+    if (bufferSelectedItem != null) {
+        bufferSelectedItem.classList.remove("selected");
+    }
+    selectedItem.classList.add("selected");
+    bufferSelectedItem = selectedItem;
+}
+
+function destroyWindows() {
+    document.getElementById("windows").innerHTML = "";
+}
+
+function addDock() {
+    if (bufferSelectedItem.classList.contains("setting")) {
+        // add a link
+        let window = document.createElement("div");
+        window.classList.add("settings-window");
+        window.classList.add("add-dock-settings-window");
+        window.classList.add("widget");
+        window.classList.add("glassmorphism");
+        window.innerHTML = '<div class="inputs-dock"><span>Link</span><input type="text" id="linkInput"><br><span>Icon</span><input type="text" id="iconInput" onkeyup="previewIcon.style.backgroundImage = \'url(\' + this.value + \')\'"></div><span class="preview-icon" id="previewIcon"></span><div style="grid-row-start:2;grid-column-start:1;grid-column-end:3;margin: auto;"><span class="dock-button" onclick="addDockLink(linkInput.value, iconInput.value)">Confirm</span><span class="dock-button" onclick="destroyWindows()">Cancel</span></div>';
+        // add all elements
+        document.getElementById("windows").appendChild(window);
+    } else if (bufferSelectedItem.classList.contains("settings-content")) {
+        // add a folder
+    }
+}
+
+function addDockLink(link, icon) {
+    console.log(link + ", " + icon);
+    // modify useroptions
+    let folder = bufferSelectedItem.getElementsByClassName("title")[0];
+    userOptions.dock[folder.innerHTML].push({
+        url: link,
+        icon: icon
+    });
+    console.log(userOptions.dock[folder]);
+    // save cookie
+    saveCookies();
+    // destroy window
+    destroyWindows();
+    // reload page (optional)
+}
+
+function editDock() {
+    
+}
+
+function removeDock() {
+    
+}
+
+// ASPECT FUNCTIONS ****************************************************
 function setBackground(path) {
     document.body.style.backgroundImage = "url(" + path + ")";
     userOptions.backgroundImage = path;
+    saveCookies();
+}
+
+
+
+
+
+
+
+
+
+
+// PRIVATE FUNCTIONS ********************************************************
+function saveCookies() {
     document.cookie = "userOptions=" + JSON.stringify(userOptions);
-    //console.log("Saved cookie: " + document.cookie);
 }

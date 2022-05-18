@@ -119,6 +119,56 @@ body {
     margin: 0 3px;
 }
 
+.selected {
+    background: #6661!important;
+}
+
+.settings-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background-color: #fffd!important;
+    width: 35vw!important;
+    margin: 0!important;
+    font-size: 1.2rem;
+}
+
+input {
+    font-size: inherit;
+    border-radius: 5px;
+}
+
+.add-dock-settings-window {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 15px;
+    grid-row-gap: 20px;
+    grid-template-columns: max-content auto;
+}
+.add-dock-settings-window .inputs-dock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.add-dock-settings-window .preview-icon {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #6661;
+    background-size: cover;
+    background-position: center;
+}
+.add-dock-settings-window .dock-button {
+    margin: 0 5px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: #fff6;
+    box-shadow: 0 0 10px #0002;
+    cursor: pointer;
+}
+
 /* widgets */
 .widgets {
     position: absolute;
@@ -316,7 +366,7 @@ button:hover {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
-    transition: background-color .3s;
+    transition: background-color, box-shadow .3s;
     margin-left: 10px;
 }
 
@@ -326,6 +376,7 @@ button:hover {
 
 .apps .link:hover {
     background-color: #fff3;
+    box-shadow: 0 0 5px #5551;
 }
 
 .apps .separator {

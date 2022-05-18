@@ -20,6 +20,7 @@ function toggleAppsDropdown() {
 }
 
 function selectApps(id) {
+    console.log(id);
     // set display none on active id
     document.getElementById(activeId).style.display = "none";
     // set display block on id
