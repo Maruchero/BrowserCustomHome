@@ -26,44 +26,7 @@
             <div id="setting-title"></div>
             <div id="settings-content"></div>
         </div>
-        <span class="close-button" onclick="closeSettings()">cli</span>
-    </div>
-
-    <div class="widgets">
-        <div class="widget glassmorphism">
-            <div class="clock">
-                <span class="clock-hand" id="hour-hand"></span>
-                <span class="clock-hand" id="second-hand">:</span>
-                <span class="clock-hand" id="minute-hand"></span>
-            </div>
-        </div>
-
-        <div class="widget glassmorphism">
-            <div class="calendar">
-                <div class="calendar-header">
-                    <button class="arrow-left" onclick="setDay(-1)"></button>
-                    <div>
-                        <div class="calendar-header-month">
-                            <span class="calendar-header-month-name" id="month">May</span>
-                            <span class="calendar-header-month-year" id="year">2022</span>
-                        </div>
-                        <div class="calendar-header-day">
-                            <span class="calendar-header-day-name" id="day-name">Sun</span>
-                            <span class="calendar-header-day-date" id="day-number">08</span>
-                        </div>
-                    </div>
-                    <button class="arrow-right" onclick="setDay(1)"></button>
-                </div>
-                <div class="calendar-body">
-                    <div class="events-header">
-                        Events
-                        <button class="add" onclick="add()"></button>
-                    </div>
-                    <div class="events-body" id="events-container">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <span class="close-button" onclick="closeSettings()"></span>
     </div>
 
     <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar glassmorphism">
@@ -71,46 +34,16 @@
         <button type="submit" class="search-button"></button>
     </form>
 
-    <div class="apps">
+    <div class="dock">
         <nav class="glassmorphism">
-            <div id="dock">
-                <!--
-                <div id="apps-school" class="apps-container">
-                    <a href="https://web.spaggiari.eu/home/app/default/login.php" class="link" target="_blank"
-                        style="background-image: url('https://web.spaggiari.eu/favicon.ico');"></a>
-                    <a href="https://campus.marconivr.it/" class="link" target="_blank"
-                        style="background-image: url('https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico');"></a>
-                    <a href="https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="link" target="_blank"
-                        style="background-image: url('https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico');"></a>
-                </div>
-                <div id="apps-programming" class="apps-container">
-                    <a href="https://stackoverflow.com/" class="link" target="_blank"
-                        style="background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196');"></a>
-                    <a href="https://github.com/" class="link" target="_blank"
-                        style="background-image: url('https://github.githubassets.com/favicons/favicon.svg');"></a>
-                    <a href="https://fonts.google.com/icons" class="link" target="_blank"
-                        style="background-image: url('https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/favicon.svg');"></a>
-                </div>
-                <div id="apps-gaming" class="apps-container">
-                    <a href="https://www.roblox.com/home" class="link" target="_blank"
-                        style="background-image: url('https://images.rbxcdn.com/3b43a5c16ec359053fef735551716fc5.ico');"></a>
-                    <a href="https://aternos.org/server/" class="link" target="_blank"
-                        style="background-image: url('https://aternos.org/favicon.ico');"></a>
-                </div>
-                -->
-            </div>
+            <div id="dock"></div>
             <span class="separator"></span>
-            <span class="link" style="background-image: url('img/apps_icon.svg');" onclick="toggleAppsDropdown()"></span>
+            <span class="link" style="background-image: url('img/apps_icon.svg');" onclick="dock.dropdown.toggleAppsDropdown()"></span>
         </nav>
 
-        <div id="dropdown" class="dropdown glassmorphism">
-            <div class="container"></div>
-        </div>
+        <div id="dropdown" class="dropdown glassmorphism"></div>
     </div>
 
-    <script src="settings.js"></script>
-    <script src="clock.js"></script>
-    <script src="dropdown.js"></script>
-    <script src="calendar.js"></script>
+    <script src="dock.js"></script>
 </body>
 </html>
