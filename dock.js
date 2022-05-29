@@ -1,46 +1,4 @@
-// variable declaration
-let debug = true;
-let dock, folder, folder1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// global functions
-function sout(msg) {
-    if (debug) {
-        console.log(msg);
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// classes
+// classes ***********************************************
 // dropdown
 class Dropdown {
     constructor(foldersHTML) {
@@ -67,16 +25,16 @@ class Dropdown {
         this.dropdown.appendChild(this.container);
 
         sout(this.folders)
-        
+
         // Clear dropdown
         this.activeFolder = foldersHTML[0].id;
 
         for (let i = 1; i < foldersHTML.length; i++) {
             foldersHTML[i].style.display = "none";
         }
-        
+
         this.maxH = dropdown.offsetHeight;
-        this.toggleAppsDropdown(); //dropdown.style.maxHeight = "0px";
+        this.toggleAppsDropdown();
     }
 
     toggleAppsDropdown() {
@@ -87,12 +45,11 @@ class Dropdown {
         }
     }
 
-    setContent(folder) {
-        sout(folder);
+    setContent(selectedId) {
         document.getElementById(this.activeFolder).style.display = "none";
-        document.getElementById(folder).style.display = "block";
-        this.activeFolder = folder;
-        dropdown.style.maxHeight = "0px";
+        document.getElementById(selectedId).style.display = "block";
+        this.activeFolder = selectedId;
+        this.toggleAppsDropdown();
     }
 
     getActiveFolder() {
@@ -102,11 +59,11 @@ class Dropdown {
 
 // dock
 class Link {
-    constructor(url="linkUrl", img="linkImg") {
+    constructor(url = "linkUrl", img = "linkImg") {
         this.url = url;
         this.img = img;
     }
-    
+
     getUrl() {
         return this.url;
     }
@@ -114,7 +71,7 @@ class Link {
     getImg() {
         return this.img;
     }
-    
+
     setUrl(url) {
         this.url = url;
     }
@@ -122,7 +79,7 @@ class Link {
     setImg(img) {
         this.img = img;
     }
-    
+
     toString() {
         return `{"url": "${this.url}", "img": "${this.img}"}`;
     }
@@ -137,13 +94,17 @@ class Link {
 }
 
 class Folder {
-    constructor(name="folderName") {
+    constructor(name = "folderName") {
         this.name = name;
         this.links = [];
     }
 
     appendLink(name, url) {
         this.links.push(new Link(name, url));
+    }
+
+    appendLink(link) {
+        this.links.push(link);
     }
     /*
     removeLink(name) {
@@ -175,7 +136,7 @@ class Folder {
         string += "]}";
         return string;
     }
-    
+
     toHTMLElement() {
         this.linksHTML = [];
 
@@ -197,12 +158,12 @@ class Dock {
         this.folders = [];
         this.foldersHTML = [];
     }
-    
+
     appendFolder(folder) {
         this.folders.push(folder);
         //this.foldersHTML.push(folder.toHTMLElement());
     }
-    
+
     getFolder(name) {
         for (let i = 0; i < this.folders.length; i++) {
             if (this.folders[i].name === name) {
@@ -245,40 +206,22 @@ class Dock {
     }
 }
 
+// main *************************************************
+let dock = new Dock();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// main code
-dock = new Dock();
-
-folder = new Folder("School");
-dock.appendFolder(folder);
-folder.appendLink("https://web.spaggiari.eu/home/app/default/login.php", "https://web.spaggiari.eu/favicon.ico");
-folder.appendLink("https://campus.marconivr.it/", "https://campus.marconivr.it/pluginfile.php/3/theme_adaptable/favicon/1642784376/favicon.ico");
-folder.appendLink("https://accounts.google.com/ServiceLogin/webreauth?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F1%2F&sacu=1&passive=1209600&authuser=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin", "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico");
-
-folder1 = new Folder("Programming");
-dock.appendFolder(folder1);
-folder1.appendLink("https://stackoverflow.com", "https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico?v=ec617d715196");
-folder1.appendLink("https://github.com/", "https://github.githubassets.com/favicons/favicon.svg");
-folder1.appendLink("https://fonts.google.com/icons", "https://www.gstatic.com/images/icons/material/apps/fonts/1x/catalog/v5/favicon.svg");
+// cycle through links in USER_OPTIONS.dock.folders
+for (let i = 0; i < USER_OPTIONS.dock.folders.length; i++) {
+    let folder = new Folder(USER_OPTIONS.dock.folders[i].name);
+    dock.appendFolder(folder);
+    for (let j = 0; j < USER_OPTIONS.dock.folders[i].links.length; j++) {
+        let link = new Link(USER_OPTIONS.dock.folders[i].links[j].url, USER_OPTIONS.dock.folders[i].links[j].icon);
+        folder.appendLink(link);
+    }
+}
 
 sout(JSON.parse(`{"dock":${dock.toString()}}`));
 
 dock.appendToHTML();
 
-
+// save options
+//saveOptions();

@@ -15,20 +15,6 @@
         <span class="tool" style="background-image: url('img/settings.svg');" onclick="openSettings()"></span>
     </div>
 
-    <div class="glassmorphism" id="settings">
-        <div class="groups">
-            <span class="group" onclick="setSettingsContent(this)">Dock</span>
-            <span class="group" onclick="setSettingsContent(this)">Calendar</span>
-            <span class="group" onclick="setSettingsContent(this)">Search</span>
-            <span class="group" onclick="setSettingsContent(this)">Aspect</span>
-        </div>
-        <div class="settings-content">
-            <div id="setting-title"></div>
-            <div id="settings-content"></div>
-        </div>
-        <span class="close-button" onclick="closeSettings()"></span>
-    </div>
-
     <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar glassmorphism">
         <input type="text" placeholder="Search" name="q" autocomplete="off" autofocus="true">
         <button type="submit" class="search-button"></button>
@@ -44,6 +30,9 @@
         <div id="dropdown" class="dropdown glassmorphism"></div>
     </div>
 
+    <script src="debug.js"></script>
+    <script src="cookies.js"></script>
     <script src="dock.js"></script>
+    <script src="settings.js"></script>
 </body>
 </html>

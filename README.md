@@ -3,29 +3,26 @@
 
 # Description
 
-Custom home for every browser with developer style, of couse :)
+Simple and minimal customizable browser home.
 
 
 ## How to use
 
-- go in the browser
-- set interface.html as the home page
-- enjoy
+- go in the browser settings
+- set under3nder.github.io/BrowserCustomHome as the home page
+
+### How to add a link
+
+- in the top-left corner click on the settings icon
+- go in the dock section
+- if you click + you will create a folder
+- click a folder and then click + to add a link
 
 
 ## Features
 
-- os like looking
-- terminal accessible from navbar
 - vastity of customizable functions
 - modern design
-
-
-## Changelog
-
-### 2021-04-2022 v0.00
-
-- first version
 
 
 ## Author
