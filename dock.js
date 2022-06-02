@@ -1,3 +1,5 @@
+sout("");
+sout("### Running: dock.js ###");
 // classes ***********************************************
 // dropdown
 class Dropdown {
@@ -51,10 +53,11 @@ class Dropdown {
         this.activeFolder = selectedId;
         this.toggleAppsDropdown();
     }
-
+    /*
     getActiveFolder() {
         return document.getElementById(this.activeFolder);
     }
+    */
 }
 
 // dock
@@ -207,6 +210,7 @@ class Dock {
 }
 
 // main *************************************************
+sout("Creating dock");
 let dock = new Dock();
 
 // cycle through links in USER_OPTIONS.dock.folders

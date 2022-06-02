@@ -7,3 +7,6 @@ function sout(msg) {
         console.log(msg);
     }
 }
+
+// first message
+sout("### Debug mode is ACTIVE ###\n");

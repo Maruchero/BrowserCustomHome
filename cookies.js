@@ -1,3 +1,5 @@
+sout("");
+sout("### Running: cookies.js ###");
 // global variables ******************************************
 USER_OPTIONS = {};
 
@@ -17,6 +19,7 @@ function loadOptions() {
         USER_OPTIONS = JSON.parse(cookies.userOptions);
         sout("USER_OPTIONS loaded succesfully");
     } catch (error) {
+        sout("USER_OPTIONS not found, restoring defaults");
         USER_OPTIONS = {
             "dock": {
                 "folders": [

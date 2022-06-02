@@ -9,10 +9,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="windows"></div>
+    <div class="windows" id="windows">
+        <div class="window centered settings" id="settings">
+            <div class="sections">
+
+            </div>
+            <div>
+                <span class="title"></span>
+                <div class="tools"></div>
+                <div class="content"></div>
+            </div>
+            <span class="tool close" onclick="closeWindow()"></span>
+        </div>
+    </div>
 
     <div class="toolbar">
-        <span class="tool" style="background-image: url('img/settings.svg');" onclick="openSettings()"></span>
+        <span class="tool" style="background-image: url('img/settings.svg');" onclick="openWindow('settings')"></span>
     </div>
 
     <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar glassmorphism">
@@ -33,6 +45,6 @@
     <script src="debug.js"></script>
     <script src="cookies.js"></script>
     <script src="dock.js"></script>
-    <script src="settings.js"></script>
+    <script src="windows.js"></script>
 </body>
 </html>
