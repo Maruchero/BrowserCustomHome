@@ -1,8 +1,19 @@
+:root {
+    --theme-background1: #fff5;
+    --theme-color1: #000;
+    --theme-color2: #252525;
+    /* dark
+    --theme-background1: #111c;
+    --theme-color1: #fff;
+    --theme-color2: #ddd;
+    */
+}
+
 body {
     height: 100vh;
     margin: 0;
     font-family: Calibri, sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     background-image: url("img/background.webp");
     background-size: cover;
     background-repeat: no-repeat;
@@ -11,7 +22,7 @@ body {
 
 .glassmorphism {
     box-shadow: -5px -5px 5px #fff2, 5px 5px 5px #0002;
-    background-color: #fff5;
+    background-color: #fff1;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
@@ -31,12 +42,44 @@ body {
 
 /* windows */
 .windows {
+    --theme-background1: #fff9;
+    --theme-background2: #fffb;
+    --theme-background3: rgba(0, 0, 0, 0.08);
+    --theme-background4: #fffa;
+    --theme-gradient1: rgb(65, 65, 65);
+    --theme-gradient2: rgba(0, 0, 0, 0.05);
+    --theme-shadow1: 0 0 10px #0001;
+    --theme-shadow2: 0 0 10px rgba(0, 0, 0, 0.02);
+    --theme-shadow3: 0 0 10px rgba(0, 0, 0, 0.1);
+    --theme-color1: black;
+    --theme-icon1: url('img/close.svg');
+
     position: absolute;
     z-index: -1;
     width: 100%;
     height: 100%;
     background-color: #fff0;
+    color: var(--theme-color1);
     transition: background-color .5s ease;
+}
+
+.windows-dark {
+    --theme-background1: rgba(31, 31, 31, 0.97);
+    --theme-background2: #1116;
+    --theme-background3: rgba(196, 196, 196, 0.08);
+    --theme-background4: #2223;
+    --theme-gradient1: rgb(159, 159, 159);
+    --theme-gradient2: rgba(196, 196, 196, 0.05);
+    --theme-shadow1: 0 0 20px rgba(39, 39, 39, 0.4);
+    --theme-shadow2: 0 0 10px rgba(95, 95, 95, 0.2);
+    --theme-shadow3: 0 0 10px rgba(122, 122, 122, 0.5);
+    --theme-color1: white;
+    --theme-icon1: url('img/close_light.svg');
+}
+
+.windows-active {
+    background-color: var(--theme-background1);
+    z-index: 1!important;
 }
 
 .window {
@@ -44,10 +87,10 @@ body {
     max-width: calc(100vw - 40px);
     aspect-ratio: 4/3;
     box-sizing: border-box;
-    background: #fffb;
+    background: var(--theme-background2);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
-    box-shadow: 0 0 10px #0001;
+    box-shadow: var(--theme-shadow1);
     border-radius: 20px;
     padding: 35px 20px;
     transform: scale(0);
@@ -58,11 +101,11 @@ body {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-image: url('img/close.svg');
+    background-image: var(--theme-icon1);
 }
 
 .window .close:hover {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: var(--theme-background3);
 }
 
 .settings {
@@ -79,8 +122,8 @@ body {
 
 .settings .section {
     --radius: 5px;
-    height: 3em;
-    line-height: 3em;
+    height: 2.5em;
+    line-height: 2.5em;
     border-radius: var(--radius);
     padding: 0 calc(var(--radius) * 3);
     margin: 5px;
@@ -89,11 +132,15 @@ body {
 }
 
 .settings .section:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--theme-background3);
 }
 
 .settings .section.active {
-    background: linear-gradient(to right, rgb(65, 65, 65) var(--radius), rgba(0, 0, 0, 0.05) var(--radius));
+    background: linear-gradient(to right, var(--theme-gradient1) var(--radius), var(--theme-gradient2) var(--radius));
+}
+
+.settings .section-content {
+    width: 100%;
 }
 
 .settings .title {
@@ -104,26 +151,103 @@ body {
 
 
 
+.settings .content {
+    margin-top: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.9em;
+}
 
+.settings .content ul {
+    list-style: none;
 
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 10px;
+
+    padding: 10px;
+    margin: 0;
+
+    background: var(--theme-background4);
+    box-shadow: var(--theme-shadow2);
+}
+
+.settings .content ul .title {
+    font-size: 1.1em;
+}
+
+.settings .content ul li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle {
+    --width: 40px;
+    --height: calc(var(--width) / 2);
+    --border-radius: calc(var(--height) / 2);
+
+    display: inline-block;
+    cursor: pointer;
+}
+
+.switch-input {
+    display: none;
+}
+
+.slider {
+    display: block;
+    width: var(--width);
+    height: var(--height);
+    
+    border-radius: var(--border-radius);
+    box-shadow: var(--theme-shadow3);
+
+    position: relative;
+    background-color: #ddd;
+    transition: background-color .2s;
+}
+
+.switch-input:checked + .slider {
+    background-color: #4e9eff;
+}
+
+.slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--height);
+    width: var(--height);
+    background: #fff;
+    border-radius: var(--border-radius);
+    transition: transform .2s;
+}
+
+.switch-input:checked + .slider::after {
+    transform: translateX(calc(var(--height)));
+}
 
 /* toolbar */
 .toolbar {
-    position: absolute;
     box-sizing: border-box;
     width: 100%;
-    height: calc(3vh + 20px);
-    display: flex;
     padding: 5px;
+    height: calc(3vh + 20px);
+
+    position: absolute;
+    display: flex;
 }
 
 .tool {
     height: 2em;
     aspect-ratio: 1;
+    border-radius: 5px;
+
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 5px;
+
     transition: background-color .3s;
 }
 
@@ -133,17 +257,38 @@ body {
 
 /* searach bar */
 .search-bar {
+    --theme-background1: #fff5;
+    --theme-background2: #fff3;
+    --theme-shadow1: 0 0 10px #0001;
+    --theme-color1: black;
+    --theme-color2: #252525;
+    --theme-icon1: url("img/search_icon.svg");
+
     position: absolute;
     top: 20vh;
     left: 50%;
     transform: translateX(-50%);
+
     width: 35vw;
     height: 6vh;
+
     border-radius: 3vh;
     padding-left: 3vh;
+
+    background: var(--theme-background1);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.search-bar-dark {
+    --theme-background1: #111c;
+    --theme-background2: #0004;
+    --theme-shadow1: 0 0 10px #0004;
+    --theme-color1: #fff;
+    --theme-color2: #ccc;
+    --theme-icon1: url("img/search_icon_light.svg");
 }
 
 .search-bar:focus-within {
@@ -152,19 +297,22 @@ body {
 }
 
 .search-bar input {
-    background: transparent;
-    color: black;
-    font-size: 2vh;
-    font-family: Verdana, sans-serif;
-    border: 0;
-    outline: none;
-    height: 100%;
     box-sizing: border-box;
     width: 100%;
+    height: 100%;
+    
+    border: 0;
+    outline: none;
+
+    background: transparent;
+
+    color: var(--theme-color1);
+    font-size: 2vh;
+    font-family: Verdana, sans-serif;
 }
 
 .search-bar input::placeholder {
-    color: #252525;
+    color: var(--theme-color2);
 }
 
 .search-bar input:focus-visible {
@@ -174,37 +322,60 @@ body {
 .search-bar .search-button {
     display: block;
     height: 100%;
-    border: 0;
-    background-color: transparent;
     aspect-ratio: 1;
+
     border-radius: 50%;
-    background-image: url("img/search_icon.svg");
+    border: 0;
+
+    background-color: transparent;
+    background-image: var(--theme-icon1);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: center;
-    transition: background-color .3s;
-    transition: box-shadow .3s;
+
+    transition: background-color .3s, box-shadow .3s;
 }
 
 .search-bar .search-button:hover {
-    background-color: #fff3;
-    box-shadow: 0 0 10px #0001;
+    background-color: var(--theme-background1);
+    box-shadow: var(--theme-shadow1);
 }
 
 /* dock */
 .dock {
+    --theme-background1: #fff5;
+    --theme-background2: #fff5;
+    --theme-background3: #777;
+    --theme-color1: #000;
+    --theme-shadow1: 0 0 5px #3331;
+    --theme-icon1: url("img/apps_icon.svg");
+
     position: absolute;
     top: 38vh;
     left: 50%;
     transform: translateX(-50%);
 }
+
+.dock-dark {
+    --theme-background1: #111c;
+    --theme-background2: #0004;
+    --theme-background3: #ddd;
+    --theme-color1: #fff;
+    --theme-shadow1: 0 0 5px #0005;
+    --theme-icon1: url("img/apps_icon_light.svg");
+}
+
 .dock nav {
-    position: relative;
-    display: flex;
     height: 8vh;
+
     border-radius: 15px;
     padding: 10px;
+
+    position: relative;
+    display: flex;
+
     overflow: hidden;
+    background: var(--theme-background1);
 }
 
 .dock .folder {
@@ -213,14 +384,18 @@ body {
 
 .dock .link {
     display: inline-block;
-    aspect-ratio: 1;
+    
     height: 100%;
+    aspect-ratio: 1;
+
+    border-radius: 10px;
+    margin-left: 10px;
+
     background-size: 60%;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 10px;
+
     transition: background-color, box-shadow .3s;
-    margin-left: 10px;
 }
 
 .dock .link:nth-child(1) {
@@ -228,29 +403,41 @@ body {
 }
 
 .dock .link:hover {
-    background-color: #fff3;
-    box-shadow: 0 0 5px #5551;
+    background-color: var(--theme-background2);
+    box-shadow: var(--theme-shadow1);
 }
 
 .dock .separator {
     display: block;
     width: 1px;
     height: 73%;
-    background: #777;
+    
+    margin-left: 10px;
+
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    margin-left: 10px;
+
+    background: var(--theme-background3);
+}
+
+.dock .link.apps-button {
+    background-image: var(--theme-icon1);
 }
 
 /* Dropdown */
 .dropdown {
-    overflow: hidden;
+    border-radius: 10px;
+
     position: absolute;
     top: calc(100% + 2vh);
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 10px;
+
+    overflow: hidden;
+    background: var(--theme-background1);
+    color: var(--theme-color1);
+
     transition: max-height ease .2s;
 }
 
@@ -260,11 +447,12 @@ body {
 
 .dropdown .option {
     display: block;
-    width: 100%;
-    padding: 10px 30px;
     box-sizing: border-box;
+    width: 100%;
+
+    padding: 10px 30px;
 }
 
 .dropdown .option:hover {
-    background-color: #fff3;
+    background-color: var(--theme-background2);
 }

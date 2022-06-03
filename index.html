@@ -14,7 +14,7 @@
             <div class="sections">
 
             </div>
-            <div>
+            <div class="section-content">
                 <span class="title"></span>
                 <div class="tools"></div>
                 <div class="content"></div>
@@ -27,19 +27,19 @@
         <span class="tool" style="background-image: url('img/settings.svg');" onclick="openWindow('settings')"></span>
     </div>
 
-    <form action="https://www.google.com/search" method="get" target="_blank" class="search-bar glassmorphism">
+    <form action="https://www.google.com/search" method="get" target="_blank" class="light search-bar glassmorphism">
         <input type="text" placeholder="Search" name="q" autocomplete="off" autofocus="true">
         <button type="submit" class="search-button"></button>
     </form>
 
     <div class="dock">
-        <nav class="glassmorphism">
+        <nav class="glassmorphism light">
             <div id="dock"></div>
             <span class="separator"></span>
-            <span class="link" style="background-image: url('img/apps_icon.svg');" onclick="dock.dropdown.toggleAppsDropdown()"></span>
+            <span class="link apps-button" onclick="dock.dropdown.toggleAppsDropdown()"></span>
         </nav>
 
-        <div id="dropdown" class="dropdown glassmorphism"></div>
+        <div id="dropdown" class="dropdown glassmorphism light"></div>
     </div>
 
     <script src="debug.js"></script>

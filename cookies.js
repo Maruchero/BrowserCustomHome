@@ -21,6 +21,11 @@ function loadOptions() {
     } catch (error) {
         sout("USER_OPTIONS not found, restoring defaults");
         USER_OPTIONS = {
+            "theme": {
+                "search-bar": "light",
+                "dock": "light",
+                "windows": "light"
+            },
             "dock": {
                 "folders": [
                     {
