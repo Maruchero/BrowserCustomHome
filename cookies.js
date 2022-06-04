@@ -1,22 +1,22 @@
 sout("");
 sout("### Running: cookies.js ###");
 // global variables ******************************************
+COOKIES = {}
 USER_OPTIONS = {};
 
 
 // functions *************************************************
-function loadOptions() {
+function loadCookies() {
     sout("Loading cookies");
     // convert cookies to javascript object
-    let cookies = {};
     document.cookie.split(";").forEach(cookie => {
         let pos = cookie.indexOf("=");
-        cookies[cookie.substring(0, pos)] = cookie.substring(pos + 1);
+        COOKIES[cookie.substring(0, pos)] = cookie.substring(pos + 1);
     });
 
     // assign USER_OPTIONS respective cookie
     try {
-        USER_OPTIONS = JSON.parse(cookies.userOptions);
+        USER_OPTIONS = JSON.parse(COOKIES.userOptions);
         sout("USER_OPTIONS loaded succesfully");
     } catch (error) {
         sout("USER_OPTIONS not found, restoring defaults");
@@ -24,8 +24,10 @@ function loadOptions() {
             "theme": {
                 "search-bar": "light",
                 "dock": "light",
+                "toolbar": "light",
                 "windows": "light"
             },
+            "background": "img/background.webp",
             "dock": {
                 "folders": [
                     {
@@ -68,11 +70,16 @@ function loadOptions() {
     }
 }
 
-function saveOptions() {
-    document.cookie = "userOptions=" + JSON.stringify(USER_OPTIONS);
-    sout("Saved cookies");
+function saveCookies() {
+    // save USER_OPTIONS to cookie
+    COOKIES.userOptions = JSON.stringify(USER_OPTIONS);
+    // convert javascript object to cookies
+    for (let key in COOKIES) {
+        document.cookie = `${key}=${COOKIES[key]}`;
+    }
+    sout("Cookies saved");
 }
 
 
 // main ******************************************************
-loadOptions();
+loadCookies();
