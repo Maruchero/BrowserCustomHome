@@ -60,6 +60,16 @@ class Dropdown {
     */
 }
 
+
+
+
+
+
+
+
+
+
+
 // dock
 class Link {
     constructor(url = "linkUrl", img = "linkImg") {
@@ -95,6 +105,16 @@ class Link {
         return link;
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 class Folder {
     constructor(name = "folderName") {
@@ -155,6 +175,17 @@ class Folder {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
 class Dock {
     // sturcture: dock -> folder -> link -> url, img
     constructor() {
@@ -209,6 +240,20 @@ class Dock {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // main *************************************************
 sout("Creating dock");
 let dock = new Dock();
@@ -226,6 +271,3 @@ for (let i = 0; i < USER_OPTIONS.dock.folders.length; i++) {
 sout(JSON.parse(`{"dock":${dock.toString()}}`));
 
 dock.appendToHTML();
-
-// save options
-//saveOptions();

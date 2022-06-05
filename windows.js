@@ -3,14 +3,9 @@ sout("### Running: settings.js ###");
 
 // classes
 class Section {
-    constructor(title) {
+    constructor(title, content=null) {
         this.title = title;
-        this.toolbar;
-        this.content;
-    }
-
-    setToolbar(toolbar) {
-        this.toolbar = toolbar;
+        this.content = content;
     }
 
     setContent(content) {
@@ -27,7 +22,6 @@ class Settings {
 
         this.sections = this.window.getElementsByClassName("sections")[0];
         this.title = this.window.getElementsByClassName("title")[0];
-        this.tools = this.window.getElementsByClassName("tools")[0];
         this.content = this.window.getElementsByClassName("content")[0];
 
         this.sections.innerHTML = "";
@@ -52,13 +46,6 @@ class Settings {
         this.openedSection = this.sections.children[index];
 
         this.title.innerHTML = this.sectionsHTML[index].title;
-
-        this.tools.innerHTML = "";
-        try {
-            this.tools.appendChild(this.sectionsHTML[index].toolbar);
-        } catch (error) {
-            this.tools.innerHTML = "";
-        }
         
         this.content.innerHTML = "";
         try {
@@ -133,6 +120,18 @@ function setBackground(image) {
 
 
 
+let selectedId;
+function settingsDockAdd() {
+    // open an input to add a new link or a folder
+    inputContainer.style.maxHeight = "174px";
+    input1.setAttribute("placeholder", "URL");
+    input2.setAttribute("placeholder", "Icon URL");
+    button.innerHTML = "Add";
+    button.setAttribute("onclick", "settingsDockAddConfirm()");
+}
+
+
+
 
 
 
@@ -157,11 +156,7 @@ let settings = new Settings();
 
 
 
-// section
-let section1 = new Section("General");
-// toolbar
-section1.setToolbar();
-
+// section GENERAL *****
 // content
 let div = document.createElement("div");
 let ul = document.createElement("ul");
@@ -178,6 +173,7 @@ Object.keys(USER_OPTIONS.theme).forEach(key => {
     }
 
     let li = document.createElement("li");
+    li.classList.add("theme-selector")
     
     let span = document.createElement("span");
     span.innerHTML = key;
@@ -220,29 +216,107 @@ li.appendChild(label);
 ul.appendChild(li);
 div.appendChild(ul);
 
-section1.setContent(div);
+let section1 = new Section("General", div);
 
 
 
-// section
-let section2 = new Section("Dock");
-// toolbar
-section2.setToolbar();
+
+
+
+
+
+// section DOCK *****
 //content
-span = document.createElement("span");
-span.innerHTML = "Hai cliccato dock";
-section2.setContent(span);
+div = document.createElement("div");
+/*
+toolbar = document.createElement("div");  // toolbar
+toolbar.classList.add("toolbar");
+toolbar.style.position = "relative";
+
+let tool1 = document.createElement("span");
+tool1.classList.add("tool");
+tool1.style.backgroundImage = "var(--theme-icon-add)";
+tool1.setAttribute("onclick", "settingsDockAdd()");
+
+let tool2 = document.createElement("span");
+tool2.classList.add("tool");
+tool2.style.backgroundImage = "var(--theme-icon-edit)";
+tool2.setAttribute("onclick", "settingsDockEdit()");
+
+let tool3 = document.createElement("span");
+tool3.classList.add("tool");
+tool3.style.backgroundImage = "var(--theme-icon-delete)";
+tool3.setAttribute("onclick", "settingsDockDelete()");
+
+toolbar.appendChild(tool1);
+toolbar.appendChild(tool2);
+toolbar.appendChild(tool3);
+div.appendChild(toolbar);
+*/
+let inputContainer = document.createElement("div");  // input container
+inputContainer.classList.add("input-container");
+
+let input1 = document.createElement("input");
+input1.setAttribute("type", "text");
+let input2 = document.createElement("input");
+input2.setAttribute("type", "text");
+let button = document.createElement("button");
+
+inputContainer.appendChild(input1);
+inputContainer.appendChild(input2);
+inputContainer.appendChild(button);
+div.appendChild(inputContainer);
+
+let folders = document.createElement("div");  // folders
+folders.style.overflowY = "scroll";
+
+// for each folder in USER_OPTIONS.dock
+for (let i = 0; i < USER_OPTIONS.dock.folders.length; i++) {
+    let folder = USER_OPTIONS.dock.folders[i];
+
+    let ul = document.createElement("ul");
+    ul.classList.add("folder");
+
+    let span = document.createElement("span");
+    span.classList.add("title");
+    span.innerHTML = folder.name;
+    ul.appendChild(span);
+
+    for (let j = 0; j < folder.links.length; j++) {
+        let link = folder.links[j];
+
+        let li = document.createElement("li");
+        li.classList.add("link");
+        li.style = `--icon: url("${link.icon}")`;
+        li.innerHTML = link.url;
+
+        ul.appendChild(li);
+    }
+
+    folders.appendChild(ul);
+}
+
+div.appendChild(folders);
+
+
+let section2 = new Section("Dock", div);
+
+
+
+
+
+
+
 
 
 
 // section
 let section3 = new Section("Advanced");
-// toolbar
-section3.setToolbar();
 //content
 span = document.createElement("span");
 span.innerHTML = "Questa è la sezione advanced";
 section3.setContent(span);
+
 
 
 
@@ -253,6 +327,7 @@ settings.addSection(section1);
 settings.addSection(section2);
 settings.addSection(section3);
 
+settings.openSection(0);
 
 
 
@@ -266,21 +341,7 @@ settings.addSection(section3);
 
 
 
-settings.sections.getElementsByClassName("section")[0].click();
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 if (DEBUG) {
     openWindow("settings");
+    settings.openSection(1);
 }
-*/

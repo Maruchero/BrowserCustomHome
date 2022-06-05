@@ -26,12 +26,27 @@ body {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* windows */
 .windows {
     --theme-background1: #fff9;
     --theme-background2: #fffb;
     --theme-background3: rgba(0, 0, 0, 0.08);
     --theme-background4: #fffb;
+    --theme-background5: #fff;
     --theme-gradient1: rgb(65, 65, 65);
     --theme-gradient2: rgba(0, 0, 0, 0.05);
     --theme-shadow1: 0 0 10px #0001;
@@ -40,12 +55,15 @@ body {
     --theme-color1: black;
     --theme-color1: #333;
     --theme-icon1: url('img/close.svg');
+    --theme-icon-add: url('img/add.svg');
+    --theme-icon-edit: url('img/edit.svg');
+    --theme-icon-delete: url('img/delete.svg');
 
     position: absolute;
     z-index: -1;
     width: 100%;
     height: 100%;
-    background-color: #fff0;
+    background-color: transparent;
     color: var(--theme-color1);
     transition: background-color .5s ease;
 }
@@ -55,6 +73,7 @@ body {
     --theme-background2: rgba(39, 39, 39, 0.6);
     --theme-background3: rgba(196, 196, 196, 0.08);
     --theme-background4: rgba(39, 39, 39, 0.473);
+    --theme-background5: rgb(39, 39, 39);
     --theme-gradient1: rgb(159, 159, 159);
     --theme-gradient2: rgba(196, 196, 196, 0.05);
     --theme-shadow1: 0 0 20px rgba(39, 39, 39, 0.4);
@@ -63,6 +82,9 @@ body {
     --theme-color1: white;
     --theme-color2: #ccc;
     --theme-icon1: url('img/close_light.svg');
+    --theme-icon-add: url('img/add_light.svg');
+    --theme-icon-edit: url('img/edit_light.svg');
+    --theme-icon-delete: url('img/delete_light.svg');
 }
 
 .window {
@@ -76,7 +98,7 @@ body {
     box-shadow: var(--theme-shadow1);
     border-radius: 20px;
     padding: 35px 20px;
-    transform: scale(0);
+    transform: translate(-50%, -50%) scale(0);
     transition: transform .5s ease;
 }
 
@@ -131,10 +153,8 @@ body {
     font-size: 2.5em;
 }
 
-
-
-
 .settings .content {
+    position: relative;
     margin-top: 20px;
     font-family: 'Segoe UI', sans-serif;
     font-size: 0.9em;
@@ -158,11 +178,32 @@ body {
     font-size: 1.1em;
 }
 
-.settings .content ul li {
+.settings .content ul li.theme-selector {
     margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.settings .content ul li.link {
+    --icon: "";
+    margin: 10px 0;
+    display: block;
+
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: min(70vh, 100vw);
+}
+
+.settings .content ul li.link::before {
+    content: '';
+    background-image: var(--icon);
+    background-size: cover;
+    display: inline-block;
+    height: 1.2em;
+    aspect-ratio: 1;
+    margin-right: 10px;
 }
 
 .toggle {
@@ -211,6 +252,14 @@ body {
     transform: translateX(calc(var(--height)));
 }
 
+.settings button {
+    color: inherit;
+    font-size: inherit;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background: var(--theme-background3);
+}
+
 .settings input {
     border: 1px solid #555;
     border-radius: 5px;
@@ -224,9 +273,56 @@ body {
     color: var(--theme-color2);
 }
 
+.settings .input-container {
+    position: absolute;
+    background: var(--theme-background5);
+    box-shadow: 0 0 10px var(--theme-background5);
+
+    box-sizing: border-box;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: hidden;
+    max-height: 0;
+    transition: max-height .2s;
+}
+
+.settings .input-container * {
+    margin: 10px;
+    width: max-content;
+}
+
+.settings .input-container *:first-child {
+    margin-top: 20px;
+}
+
+.settings .input-container *:last-child {
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* toolbar */
 .toolbar {
-    --theme-icon1: url('img/settings.svg');
+    --theme-icon-settings: url('img/settings.svg');
 
     box-sizing: border-box;
     width: 100%;
@@ -238,7 +334,7 @@ body {
 }
 
 .toolbar-dark {
-    --theme-icon1: url('img/settings_light.svg');
+    --theme-icon-settings: url('img/settings_light.svg');
 }
 
 .tool {
@@ -256,6 +352,19 @@ body {
 .tool:hover {
     background-color: #fff5;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* searach bar */
 .search-bar {
@@ -343,6 +452,21 @@ body {
     box-shadow: var(--theme-shadow1);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* dock */
 .dock {
     --theme-background1: #fff5;
@@ -426,6 +550,21 @@ body {
 .dock .link.apps-button {
     background-image: var(--theme-icon1);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Dropdown */
 .dropdown {
