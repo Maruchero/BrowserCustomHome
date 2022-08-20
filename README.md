@@ -26,4 +26,4 @@ Simple and minimal customizable browser home.
 
 
 ## Author
-Garonzi Marcello
+Maruchero
